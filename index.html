@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RV.NEURAL // Aarvee Wadhwa</title>
+<style>
+:root{--bg:#020912;--panel:#061522;--cyan:#00d9ff;--blue:#168cff;--green:#39ff88;--purple:#9b5cff;--text:#dff7ff;--muted:#7896a8}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 50% 20%,#082338 0,#020912 45%,#01060b 100%);color:var(--text);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(0,217,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,217,255,.035) 1px,transparent 1px);background-size:32px 32px}
+.shell{max-width:1200px;margin:auto;padding:28px 22px 70px}.top{display:flex;justify-content:space-between;border:1px solid #14506c;border-radius:18px;padding:12px 18px;background:#04121d99;box-shadow:0 0 30px #00d9ff12}.top b{color:var(--cyan)}.online{color:var(--green)}
+.hero{text-align:center;padding:38px 10px 18px}.eyebrow{color:var(--cyan);letter-spacing:5px;font-size:14px}.hero h1{font-size:clamp(42px,8vw,92px);margin:15px 0 5px;letter-spacing:8px;text-shadow:0 0 28px #00d9ff66}.hero p{color:#8eb5c8;letter-spacing:3px}
+#network{height:600px;border:1px solid #116282;border-radius:28px;background:linear-gradient(180deg,#031421d9,#020b13e8);position:relative;overflow:hidden;box-shadow:inset 0 0 70px #00aaff0d,0 0 45px #00d9ff0b}
+canvas{position:absolute;inset:0;width:100%;height:100%}.hint{position:absolute;top:18px;left:24px;color:#477d96;font-size:12px;letter-spacing:2px}.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:none}.core .orb{width:130px;height:130px;border:2px solid var(--cyan);border-radius:50%;box-shadow:0 0 30px #00d9ff88,inset 0 0 30px #00d9ff22;animation:pulse 2s infinite}.core strong{display:block;margin-top:-77px;font-size:20px;color:#fff;letter-spacing:3px}.core small{display:block;margin-top:50px;color:var(--cyan)}
+@keyframes pulse{50%{transform:scale(1.08);box-shadow:0 0 60px #00d9ffbb,inset 0 0 40px #00d9ff33}}
+.node{position:absolute;width:116px;height:116px;border-radius:50%;display:grid;place-items:center;text-align:center;cursor:pointer;background:#041522ee;border:2px solid var(--cyan);box-shadow:0 0 24px #00d9ff44;transition:.25s;z-index:3}.node:hover{transform:scale(1.12);box-shadow:0 0 45px #00d9ffaa}.node b{font-size:12px}.node span{display:block;color:#6edcff;font-size:9px;margin-top:5px}
+#joy{left:8%;top:22%;border-color:#a65cff;box-shadow:0 0 25px #9b5cff55}#truth{left:30%;top:7%;border-color:#00bfff}#persona{left:31%;bottom:7%;border-color:#39ff88}#identif{right:29%;top:7%;border-color:#00bfff}#llm{right:31%;bottom:7%;border-color:#9b5cff}#vision{right:8%;top:22%;border-color:#00bfff}#out{right:3%;top:48%;border-color:#39ff88}
+.controls{text-align:center;padding:20px}.btn{display:inline-block;padding:12px 20px;margin:5px;border:1px solid #126a8e;border-radius:10px;background:#041725;color:var(--cyan);text-decoration:none;cursor:pointer;font-family:inherit}.btn:hover{background:#073047;box-shadow:0 0 18px #00d9ff33}
+#detail{max-height:0;overflow:hidden;transition:max-height .5s ease;margin-top:0}.detailbox{border:1px solid #15506b;border-radius:18px;background:#04131f;padding:28px;box-shadow:0 0 40px #00d9ff0b}.detailbox h2{color:var(--cyan);margin-top:0}.detailbox .flow{color:var(--green);padding:15px;background:#020a10;border-radius:8px;overflow:auto}.chips span{display:inline-block;padding:5px 9px;margin:4px;background:#0b2534;border-radius:5px;color:#8edfff;font-size:11px}
+.links{text-align:center;margin:35px 0}.links a{color:#fff;text-decoration:none;border:1px solid #194d66;padding:10px 18px;margin:4px;border-radius:8px}.footer{text-align:center;color:#41687b;font-size:11px;letter-spacing:3px;margin-top:50px}
+@media(max-width:700px){#network{height:700px}.node{width:90px;height:90px}.core .orb{width:95px;height:95px}.core strong{font-size:14px;margin-top:-58px}.core small{margin-top:36px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<div class="top"><b>RV.SYSTEMS</b><span>// NEURAL INTERFACE</span><span class="online">● LIVE CORE</span></div>
+<section class="hero"><div class="eyebrow">AARVEE WADHWA · AI / ML · RESEARCH</div><h1>RV.NEURAL</h1><p>RETRIEVE · REASON · VERIFY · BUILD</p></section>
+
+<section id="network">
+<div class="hint">INTERACTIVE NEURAL NETWORK // CLICK A NODE</div>
+<canvas id="links"></canvas>
+<div class="core"><div class="orb"></div><strong>NEURAL CORE</strong><small>LIVE</small></div>
+<div class="node" id="joy" data-key="joy"><div>🧠<b> JOY</b><span>MULTIMODAL AI</span></div></div>
+<div class="node" id="truth" data-key="truth"><div>◈<b> TRUTHGRAPH</b><span>EVIDENCE AI</span></div></div>
+<div class="node" id="persona" data-key="persona"><div>⌖<b> PERSONA</b><span>SAFETY AI</span></div></div>
+<div class="node" id="identif" data-key="identif"><div>◉<b> IDENTIF.AI</b><span>FORENSIC AI</span></div></div>
+<div class="node" id="llm" data-key="llm"><div>◇<b> LLM</b><span>REASONING</span></div></div>
+<div class="node" id="vision" data-key="vision"><div>◉<b> VISION</b><span>COMPUTER VISION</span></div></div>
+<div class="node" id="out" data-key="out"><div>✓<b> OUTPUT</b><span>PRODUCT</span></div></div>
+</section>
+
+<div class="controls"><button class="btn" onclick="signal()">SEND SIGNAL</button><button class="btn" onclick="resetNet()">RESET</button></div>
+
+<section id="detail"><div class="detailbox" id="detailbox"></div></section>
+
+<div class="links">
+<a href="https://www.linkedin.com/in/aarveewadhwa/" target="_blank">LINKEDIN ↗</a>
+<a href="https://leetcode.com/u/RVWadhwa/" target="_blank">LEETCODE ↗</a>
+<a href="https://github.com/AarveeWadhwa" target="_blank">GITHUB ↗</a>
+</div>
+<div class="footer">RV.NEURAL · A LIVE PERSONAL AI GRAPH · BUILT BY AARVEE</div>
+</div>
+<script>
+const data={
+truth:{title:"TruthGraph",tag:"EXPLAINABLE MULTI-AGENT FACT VERIFICATION",desc:"A dynamic evidence graph designed to verify claims rather than simply generate answers. Claims are decomposed, evidence is retrieved and evaluated, agents cross-check support or contradiction, and the resulting relationships are represented as an explainable graph.",flow:"CLAIM → RETRIEVE → ANALYZE → VERIFY → EVIDENCE GRAPH → VERDICT",chips:["RAG","Llama 3.1","LangChain","Neo4j","Multi-Agent","XAI"]},
+joy:{title:"JOY",tag:"MULTIMODAL AI THERAPIST",desc:"A multimodal student-support system combining text, speech and image-based emotion understanding with an LLM. Separate modality models estimate emotional state and late fusion combines their signals before response generation.",flow:"TEXT + AUDIO + IMAGE → EMOTION → FUSION → LLM → RESPONSE",chips:["RoBERTa","Wav2Vec2","Swin Tiny","LLaMA","FAISS","Chainlit"]},
+persona:{title:"Persona",tag:"PERSONALIZED SAFETY NAVIGATION",desc:"A safety-first navigation concept that goes beyond shortest-path routing by considering user preferences and contextual route risk. The goal is a route recommendation that adapts to the person, not just the map.",flow:"USER PROFILE → ROUTE RISK → PERSONALIZATION → SAFE PATH",chips:["Python","ML","Maps","Risk Scoring","Personalization","Safety"]},
+identif:{title:"Identif.ai",tag:"FORENSIC AUDIO → 3D FACE PIPELINE",desc:"A forensic reconstruction pipeline that converts verbal facial descriptions into structured facial attributes and uses computer-vision techniques to produce a 2D representation and 3D facial reconstruction.",flow:"AUDIO → WHISPER → ATTRIBUTES → FACE → 3D RECONSTRUCTION",chips:["Whisper","spaCy","ArcFace","RetinaFace","3DDFA","Open3D"]},
+vision:{title:"Computer Vision",tag:"VISUAL INTELLIGENCE",desc:"Computer-vision work spanning facial analysis, emotion recognition and visual feature extraction, with models integrated into larger AI pipelines instead of treated as isolated classifiers.",flow:"IMAGE → FEATURES → MODEL → SIGNAL → AI SYSTEM",chips:["OpenCV","Swin","ArcFace","RetinaFace","Deep Learning"]},
+llm:{title:"LLM / RAG Core",tag:"REASONING + RETRIEVAL",desc:"LLM applications focused on grounding generation with retrieved information, structured evidence and agent workflows. The emphasis is on useful, explainable systems rather than chatbot-only demos.",flow:"QUERY → RETRIEVE → CONTEXT → REASON → VERIFY → ANSWER",chips:["LLaMA","RAG","LangChain","FAISS","Agents","Evaluation"]},
+out:{title:"System Output",tag:"FROM MODEL TO PRODUCT",desc:"The final layer connects models and reasoning components to usable interfaces and applications — turning research ideas into systems people can actually interact with.",flow:"MODELS → ORCHESTRATION → API → INTERFACE → PRODUCT",chips:["FastAPI","React","Python","Docker","Git"]}
+};
+const canvas=document.getElementById("links"),ctx=canvas.getContext("2d"),network=document.getElementById("network");
+function resize(){canvas.width=network.clientWidth*devicePixelRatio;canvas.height=network.clientHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)} resize();addEventListener("resize",resize);
+const ids=["joy","truth","persona","identif","llm","vision","out"];
+function center(id){let e=document.getElementById(id),r=e.getBoundingClientRect(),n=network.getBoundingClientRect();return{x:r.left+r.width/2-n.left,y:r.top+r.height/2-n.top}}
+let packets=[];
+function draw(){ctx.clearRect(0,0,network.clientWidth,network.clientHeight);let c={x:network.clientWidth/2,y:network.clientHeight/2};
+ids.forEach(id=>{let p=center(id);ctx.beginPath();ctx.moveTo(c.x,c.y);ctx.lineTo(p.x,p.y);ctx.strokeStyle="#08739a66";ctx.lineWidth=1.2;ctx.stroke()});
+packets.forEach(p=>{let t=(performance.now()-p.t)/1200;if(t<1){let x=p.a.x+(p.b.x-p.a.x)*t,y=p.a.y+(p.b.y-p.a.y)*t;ctx.beginPath();ctx.arc(x,y,4,0,7);ctx.fillStyle="#39ff88";ctx.shadowBlur=18;ctx.shadowColor="#39ff88";ctx.fill();ctx.shadowBlur=0}else p.t=performance.now()});
+requestAnimationFrame(draw)} draw();
+function signal(){let c={x:network.clientWidth/2,y:network.clientHeight/2};ids.forEach(id=>packets.push({a:c,b:center(id),t:performance.now()+Math.random()*600}))}
+function resetNet(){packets=[]}
+document.querySelectorAll(".node").forEach(n=>n.onclick=()=>{let d=data[n.dataset.key];document.getElementById("detailbox").innerHTML=`<h2>${d.title}</h2><b>${d.tag}</b><p>${d.desc}</p><div class="flow">${d.flow}</div><div class="chips">${d.chips.map(x=>`<span>${x}</span>`).join("")}</div>`;let s=document.getElementById("detail");s.style.maxHeight="420px";s.scrollIntoView({behavior:"smooth",block:"nearest"});signal()});
+</script>
+</body>
+</html>
